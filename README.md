@@ -4,7 +4,8 @@ An AI-powered UX analysis tool that accepts app screenshots and returns structur
 
 Built with the [Anthropic Claude API](https://docs.anthropic.com/en/api/getting-started) and plain HTML/CSS/JS (no build step required).
 
-<img width="1078" height="745" alt="Screenshot 2026-06-01 at 4 35 55 PM" src="https://github.com/user-attachments/assets/090f39c2-807a-4200-8c6c-441f4d0ddade" />
+<img width="968" height="741" alt="Screenshot 2026-06-01 at 4 44 54 PM" src="https://github.com/user-attachments/assets/cfd567b6-27dd-4885-9b0c-2c2c1b21383f" />
+
 
 
 ---
