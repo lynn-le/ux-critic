@@ -117,8 +117,3 @@ model: 'claude-opus-4-5',  // swap to any supported model
 - History is browser-local — clearing localStorage or switching browsers loses it
 - Image size: very large screenshots (>5MB) may hit API limits; resize before upload if needed
 
----
-
-## License
-
-MIT
