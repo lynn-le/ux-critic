@@ -4,7 +4,6 @@ An AI-powered UX analysis tool that accepts app screenshots and returns structur
 
 Built with the [Anthropic Claude API](https://docs.anthropic.com/en/api/getting-started) and plain HTML/CSS/JS (no build step required).
 
-![UX Critic screenshot](https://placeholder.com/screenshot)
 
 ---
 
