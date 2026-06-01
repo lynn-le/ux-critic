@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UX Critic</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <span class="logo-text">UX Critic</span>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="nav-btn active" data-view="analyze" aria-label="Analyze">
+            <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+            Analyze
+          </button>
+          <button class="nav-btn" data-view="history" aria-label="History">
+            <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+            History
+          </button>
+          <button class="nav-btn" data-view="compare" aria-label="Compare">
+            <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+            Compare
+          </button>
+        </nav>
+      </div>
+      <div class="sidebar-footer">
+        <button class="clear-btn" id="clearHistoryBtn">Clear history</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main id="main">
+
+      <!-- ANALYZE VIEW -->
+      <section id="view-analyze" class="view active">
+        <div class="view-header">
+          <h1>Analyze</h1>
+          <p>Upload a screenshot for AI-powered UX feedback</p>
+        </div>
+
+        <div class="card upload-card">
+          <div class="upload-zone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/*" aria-label="Upload screenshot" />
+            <div class="upload-inner">
+              <div class="upload-icon-wrap">
+                <svg class="svg-icon stroke-thin" width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+              <p class="upload-label">Drop screenshot here or <span class="upload-link">browse</span></p>
+              <p class="upload-sub">PNG · JPG · WEBP</p>
+            </div>
+          </div>
+
+          <div class="preview-row hidden" id="previewRow">
+            <img id="previewImg" src="" alt="Preview" class="thumb" />
+            <div class="preview-meta">
+              <span class="preview-name" id="previewName"></span>
+              <span class="preview-size" id="previewSize"></span>
+            </div>
+            <button class="icon-btn" id="removeBtn" aria-label="Remove image">
+              <svg class="svg-icon stroke-bold" width="14" height="14" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mode selector -->
+        <div class="mode-grid">
+          <button class="mode-card active" data-mode="full">
+            <div class="mode-icon">
+              <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            </div>
+            <div>
+              <div class="mode-name">Full audit</div>
+              <div class="mode-desc">All heuristics + a11y</div>
+            </div>
+          </button>
+          <button class="mode-card" data-mode="accessibility">
+            <div class="mode-icon">
+              <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            </div>
+            <div>
+              <div class="mode-name">Accessibility</div>
+              <div class="mode-desc">WCAG & inclusive design</div>
+            </div>
+          </button>
+          <button class="mode-card" data-mode="usability">
+            <div class="mode-icon">
+              <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+            </div>
+            <div>
+              <div class="mode-name">Usability</div>
+              <div class="mode-desc">Nielsen's heuristics</div>
+            </div>
+          </button>
+          <button class="mode-card" data-mode="visual">
+            <div class="mode-icon">
+              <svg class="svg-icon" width="18" height="18" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <div class="mode-name">Visual design</div>
+              <div class="mode-desc">Hierarchy & aesthetics</div>
+            </div>
+          </button>
+        </div>
+
+        <!-- API Key input -->
+        <div class="card api-card">
+          <label class="field-label" for="apiKey">Anthropic API key</label>
+          <div class="api-row">
+            <input type="password" id="apiKey" placeholder="sk-ant-..." autocomplete="off" />
+            <button class="toggle-vis" id="toggleKey" aria-label="Toggle visibility">
+              <svg class="svg-icon" width="15" height="15" viewBox="0 0 24 24" id="eyeIcon"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <p class="field-hint">Stored in localStorage only. Never sent anywhere except the Anthropic API.</p>
+        </div>
+
+        <button class="analyze-btn" id="analyzeBtn" disabled>
+          <span id="btnSpinner" class="btn-spinner hidden"></span>
+          <svg class="svg-icon stroke-bold" id="btnIcon" width="15" height="15" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span id="btnLabel">Analyze screenshot</span>
+        </button>
+
+        <div class="error-msg hidden" id="errorMsg"></div>
+
+        <!-- Results -->
+        <div id="resultsContainer" class="hidden"></div>
+      </section>
+
+      <!-- HISTORY VIEW -->
+      <section id="view-history" class="view hidden">
+        <div class="view-header">
+          <h1>History</h1>
+          <p>All past analyses — click any entry to view the full report</p>
+        </div>
+        <div id="historyList" class="history-list"></div>
+        <div id="historyEmpty" class="empty-state hidden">
+          <p>No analyses yet. Run your first critique to see it here.</p>
+        </div>
+
+        <!-- History detail panel -->
+        <div id="historyDetail" class="hidden"></div>
+      </section>
+
+      <!-- COMPARE VIEW -->
+      <section id="view-compare" class="view hidden">
+        <div class="view-header">
+          <h1>Compare</h1>
+          <p>Select two past analyses to compare side by side</p>
+        </div>
+
+        <div class="compare-selectors">
+          <div class="compare-slot" id="slotA">
+            <div class="slot-label">Screen A</div>
+            <select id="selectA" aria-label="Select first screen">
+              <option value="">— choose analysis —</option>
+            </select>
+          </div>
+          <div class="compare-vs">VS</div>
+          <div class="compare-slot" id="slotB">
+            <div class="slot-label">Screen B</div>
+            <select id="selectB" aria-label="Select second screen">
+              <option value="">— choose analysis —</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="compareResults" class="hidden"></div>
+        <div id="compareEmpty" class="empty-state">
+          <p>Select two analyses above to see a comparison.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/prompts.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/results.js"></script>
+  <script src="js/compare.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
